@@ -11,13 +11,13 @@ android {
     }
 
     signingConfigs {
-        release {
-            storeFile file("../" + (keystoreProperties["storeFile"] ?: "release.jks"))
-            storePassword = keystoreProperties["storePassword"] ?: ""
-            keyAlias = keystoreProperties["keyAlias"] ?: "tui-alias"
-            keyPassword = keystoreProperties["keyPassword"] ?: ""
-        }
+    release {
+        storeFile file("${rootProject.projectDir}/release.jks")
+        storePassword System.getenv("KEY_STORE_PASSWORD")
+        keyAlias System.getenv("KEY_ALIAS")
+        keyPassword System.getenv("KEY_PASSWORD")
     }
+}
 
     defaultConfig {
         applicationId "ohi.andre.consolelauncher"
